@@ -63,7 +63,6 @@ export default function CartPage() {
               <span className="text-revou-yellow">${totalPrice}</span>
             </div>
             
-            {/* PERBAIKAN: Button diubah menjadi Link ke /checkout */}
             <Link 
               href="/checkout" 
               className="block w-full text-center bg-revou-yellow text-slate-900 py-4 rounded-xl font-black hover:bg-yellow-400 transition active:scale-95"

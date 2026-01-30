@@ -10,11 +10,11 @@ interface User {
 
 interface CartStore {
   cart: any[];
-  user: User | null; // Simpan data user di sini
+  user: User | null;
   addToCart: (product: Product) => void;
   removeFromCart: (productId: number) => void;
   clearCart: () => void;
-  setUser: (user: User | null) => void; // Fungsi untuk login/logout
+  setUser: (user: User | null) => void;
   totalItems: () => number;
 }
 

@@ -9,7 +9,6 @@ export default function NavigationBar() {
   const [mounted, setMounted] = useState(false);
   const router = useRouter();
 
-  // Sinkronisasi data Zustand dengan LocalStorage setelah render pertama
   useEffect(() => {
     useCartStore.persist.rehydrate(); 
     setMounted(true);
@@ -22,7 +21,6 @@ export default function NavigationBar() {
     router.refresh();
   };
 
-  // Selama belum 'mounted', kita tampilkan navbar kosongan agar tidak "flicker"
   if (!mounted) {
     return (
       <nav className="sticky top-0 z-50 border-b border-slate-800 bg-slate-900 h-16">
@@ -51,7 +49,6 @@ export default function NavigationBar() {
             )}
           </Link>
 
-          {/* Logika Tampilan User */}
           {user ? (
             <div className="flex items-center gap-4 border-l border-slate-800 pl-6">
               <div className="flex flex-col items-end">

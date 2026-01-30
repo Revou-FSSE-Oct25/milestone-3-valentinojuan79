@@ -12,12 +12,11 @@ export default function CheckoutPage() {
   const [isSuccess, setIsSuccess] = useState(false);
   const router = useRouter();
 
-  // State Form Lengkap
   const [shippingInfo, setShippingInfo] = useState({
     fullName: user?.name || "",
     address: "",
     phoneNumber: "",
-    paymentMethod: "bank_transfer" // Default payment
+    paymentMethod: "bank_transfer"
   });
 
   useEffect(() => {
@@ -66,7 +65,7 @@ export default function CheckoutPage() {
 
       <form onSubmit={handleConfirmOrder} className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         
-        {/* KOLOM 1: SHIPPING DETAILS */}
+        {/*SHIPPING DETAILS*/}
         <div className="lg:col-span-1 space-y-6">
           <div className="rounded-3xl border border-slate-800 bg-slate-900 p-6">
             <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
@@ -95,7 +94,7 @@ export default function CheckoutPage() {
           </div>
         </div>
 
-        {/* KOLOM 2: PAYMENT METHOD */}
+        {/*PAYMENT METHOD*/}
         <div className="lg:col-span-1 space-y-6">
           <div className="rounded-3xl border border-slate-800 bg-slate-900 p-6">
             <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
@@ -132,7 +131,7 @@ export default function CheckoutPage() {
           </div>
         </div>
 
-        {/* KOLOM 3: ORDER SUMMARY */}
+        {/*ORDER SUMMARY*/}
         <div className="lg:col-span-1">
           <div className="rounded-3xl border border-slate-800 bg-slate-900 p-6 sticky top-24">
             <h2 className="text-xl font-bold text-white mb-6 border-b border-slate-800 pb-4">Summary</h2>

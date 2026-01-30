@@ -7,7 +7,6 @@ export default function LoginPage() {
   const [email, setEmail] = useState("john@mail.com");
   const [password, setPassword] = useState("changeme");
   const [error, setError] = useState("");
-  // State untuk memantau proses loading
   const [isLoading, setIsLoading] = useState(false);
   const [statusMsg, setStatusMsg] = useState("");
   
@@ -43,7 +42,6 @@ export default function LoginPage() {
       
       setStatusMsg("Redirecting you to shop...");
       
-      // Memberi sedikit delay agar user sempat melihat pesan redirecting
       setTimeout(() => {
         router.push("/products");
         router.refresh();
@@ -60,7 +58,7 @@ export default function LoginPage() {
     <div className="flex min-h-[70vh] items-center justify-center py-12 px-4">
       <div className="w-full max-w-md rounded-3xl border border-slate-800 bg-slate-900 p-10 shadow-2xl relative overflow-hidden">
         
-        {/* Overlay Loading (Opsional) */}
+        {/* Overlay Loading */}
         {isLoading && (
           <div className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-slate-900/90 backdrop-blur-sm">
             <div className="h-12 w-12 animate-spin rounded-full border-4 border-revou-yellow border-t-transparent"></div>

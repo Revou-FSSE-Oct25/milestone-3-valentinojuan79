@@ -11,7 +11,7 @@ const jakarta = Plus_Jakarta_Sans({
 
 export const metadata: Metadata = {
   title: "RevoShop | E-commerce",
-  description: "Dibuat untuk Milestone 3 RevoU",
+  description: "Your one-stop shop for the latest and greatest products.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
