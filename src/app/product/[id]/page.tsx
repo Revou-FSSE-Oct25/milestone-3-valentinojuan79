@@ -1,99 +1,106 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import { Product } from '@/app/types/type';
+"use client";
+import { useEffect, useState } from "react";
+import { Product } from "@/types/product";
+import { useCartStore } from "@/lib/store";
+import { useParams } from "next/navigation";
 
-type PageProps = {
-  params: Promise<{ id: string }>;
-};
+export default function ProductDetailPage() {
+  const { id } = useParams();
+  const [product, setProduct] = useState<Product | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [isAdded, setIsAdded] = useState(false);
+  
+  const addToCart = useCartStore((state) => state.addToCart);
 
-async function getProduct(id: string): Promise<Product | null> {
-  try {
-    // SSR mode dengan cache: 'no-store'
-    const res = await fetch(`https://fakestoreapi.com/products/${id}`, {
-      cache: 'no-store',
-    });
+  useEffect(() => {
+    async function getDetail() {
+      try {
+        const res = await fetch(`https://api.escuelajs.co/api/v1/products/${id}`);
+        const data = await res.json();
+        setProduct(data);
+      } catch (error) {
+        console.error("Failed to fetch product", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    getDetail();
+  }, [id]);
 
-    if (!res.ok) return null;
-    return res.json();
-  } catch (error) {
-    console.error("Fetch error:", error);
-    return null;
-  }
-}
+  const handleAddToCart = () => {
+    if (product) {
+      addToCart(product);
+      setIsAdded(true);
+      setTimeout(() => setIsAdded(false), 2000);
+    }
+  };
 
-export default async function ProductDetailPage({ params }: PageProps) {
-  // Tunggu params-nya siap (Solusi error JSON kamu)
-  const { id } = await params;
-  const product = await getProduct(id);
+  if (loading) return <div className="py-20 text-center text-revou-yellow font-bold animate-pulse">Loading Product Details...</div>;
+  if (!product) return <div className="py-20 text-center text-white">Product not found.</div>;
 
-  // Jika produk tidak ada atau API error
-  if (!product) {
-    return (
-      <div className="flex flex-col items-center justify-center py-20">
-        <h2 className="text-2xl font-bold text-gray-800">Aduh, produknya nggak ketemu...</h2>
-        <Link href="/" className="mt-4 text-blue-600 hover:underline">
-          Kembali ke Beranda
-        </Link>
-      </div>
-    );
-  }
+  const cleanImage = product.images[0]?.replace(/[\[\]\"]/g, "");
 
   return (
-    <div className="animate-in fade-in duration-500">
-      {/* Breadcrumb sederhana */}
-      <nav className="mb-8 text-sm text-gray-500">
-        <Link href="/" className="hover:text-blue-600">Products</Link>
-        <span className="mx-2">/</span>
-        <span className="capitalize">{product.category}</span>
-      </nav>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 bg-white p-6 md:p-12 rounded-3xl border shadow-sm">
-        {/* Bagian Gambar */}
-        <div className="flex items-center justify-center bg-white rounded-2xl p-4">
-          <div className="relative w-full h-[300px] md:h-[400px]">
-            <Image
-              src={product.image}
-              alt={product.title}
-              fill
-              priority
-              className="object-contain"
-            />
-          </div>
+    <div className="py-10">
+      <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 items-center">
+        {/* Product Image Section */}
+        <div className="overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 p-4">
+          <img 
+            src={cleanImage} 
+            alt={product.title} 
+            className="w-full rounded-2xl object-cover shadow-2xl transition hover:scale-105 duration-500" 
+          />
         </div>
 
-        {/* Bagian Info */}
+        {/* Product Info Section */}
         <div className="flex flex-col">
-          <span className="inline-block px-3 py-1 text-xs font-bold text-blue-600 bg-blue-50 rounded-full w-fit mb-4 uppercase tracking-widest">
-            {product.category}
+          <span className="inline-block w-fit rounded-full bg-blue-600/10 px-4 py-1 text-xs font-bold uppercase tracking-widest text-revou-yellow">
+            {product.category.name}
           </span>
           
-          <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 leading-tight mb-4">
+          <h1 className="mt-4 text-4xl font-black text-white leading-tight md:text-5xl">
             {product.title}
           </h1>
-
-          <div className="flex items-baseline gap-2 mb-6">
-            <span className="text-3xl font-black text-gray-900">${product.price}</span>
-            <span className="text-sm text-gray-400 line-through">${(product.price + 20).toFixed(2)}</span>
+          
+          <div className="mt-6 flex items-center gap-4">
+            <p className="text-4xl font-black text-revou-yellow">${product.price}</p>
+            <span className="rounded-lg bg-slate-800 px-3 py-1 text-sm font-medium text-slate-400">
+              In Stock
+            </span>
           </div>
 
-          <div className="space-y-4 border-t pt-6">
-            <h3 className="text-sm font-bold text-gray-800 uppercase tracking-wider">Description</h3>
-            <p className="text-gray-600 leading-relaxed italic">
-              "{product.description}"
+          <div className="mt-8 border-t border-slate-800 pt-8">
+            <h3 className="text-lg font-bold text-white">Description</h3>
+            <p className="mt-4 text-lg leading-relaxed text-slate-400">
+              {product.description}
             </p>
           </div>
-
-          <div className="mt-10 space-y-3">
-            <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl shadow-lg shadow-blue-200 transition active:scale-[0.98]">
-              Add to Cart
-            </button>
-            <button className="w-full bg-white border-2 border-gray-200 text-gray-800 font-bold py-4 rounded-xl hover:bg-gray-50 transition">
-              Save to Wishlist
-            </button>
-          </div>
           
-          <p className="mt-6 text-center text-xs text-gray-400">
-            Free shipping on orders over $100 • 30-day return policy
+          {/* Add to Cart Button */}
+          <button 
+            onClick={handleAddToCart}
+            disabled={isAdded}
+            className={`mt-10 flex w-full items-center justify-center gap-3 rounded-2xl py-5 text-lg font-black transition-all active:scale-95 shadow-xl ${
+              isAdded 
+                ? "bg-green-500 text-white cursor-default" 
+                : "bg-revou-yellow text-slate-900 hover:bg-yellow-400 shadow-yellow-900/10"
+            }`}
+          >
+            {isAdded ? (
+              <>
+                <span>Added to Cart!</span>
+                <span className="text-2xl">✓</span>
+              </>
+            ) : (
+              <>
+                <span>Add to Cart</span>
+                <span className="text-2xl">🛒</span>
+              </>
+            )}
+          </button>
+
+          <p className="mt-6 text-center text-sm text-slate-500">
+            Free shipping worldwide.
           </p>
         </div>
       </div>
