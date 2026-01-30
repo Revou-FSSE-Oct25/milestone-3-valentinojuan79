@@ -41,7 +41,7 @@ This project focuses on implementing **Next.js** integrated with the Platzi Fake
 
 1. **Clone the repository**:
    ```bash
-   git clone [https://github.com/your-username/your-repo-name.git](https://github.com/your-username/your-repo-name.git)
+   git clone https://github.com/Revou-FSSE-Oct25/milestone-3-valentinojuan79
 
 2. **Install dependencies**:
     ```bash
