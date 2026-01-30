@@ -13,7 +13,7 @@ export default function LoginPage() {
   const router = useRouter();
   const setUser = useCartStore((state) => state.setUser);
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleLogin = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     setError("");
     setIsLoading(true);
