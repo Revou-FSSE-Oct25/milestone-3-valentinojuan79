@@ -136,7 +136,7 @@ export default function CheckoutPage() {
         <div className="lg:col-span-1">
           <div className="rounded-3xl border border-slate-800 bg-slate-900 p-6 sticky top-24">
             <h2 className="text-xl font-bold text-white mb-6 border-b border-slate-800 pb-4">Summary</h2>
-            <div className="space-y-3 max-h-[150px] overflow-y-auto mb-6 pr-2">
+            <div className="space-y-3 max-h-37.5 overflow-y-auto mb-6 pr-2">
               {cart.map((item) => (
                 <div key={item.id} className="flex justify-between text-xs">
                   <span className="text-slate-400 line-clamp-1">{item.title} x{item.quantity}</span>
