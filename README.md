@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 RevoFun - E-Commerce Platform
 
-## Getting Started
+RevoFun is a e-commerce application built as part of the **RevoU Software Engineering Bootcamp Milestone 3**. This project demonstrates a complete shopping journey, from authentication to a customized checkout experience.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 📝 Overview
+This project focuses on implementing **Next.js** integrated with the Platzi Fake Store API. It features a "Mobile First" design approach with a sleek Dark Mode aesthetic, accented by the signature RevoU yellow.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ✨ Features Implemented
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+* **Real Authentication**: Implemented a full login system using Platzi API tokens to fetch and display user profiles globally.
+* **Dynamic Product Catalog**: Fetches and displays products dynamically with category filtering and detailed price rendering.
+* **Shopping Cart**: A persistent shopping cart management system that saves user data across browser refreshes using Zustand.
+* **Interactive Checkout Flow**: A multi-step order process allowing users to input custom shipping details and select payment methods.
+* **Optimized Rendering Strategy**: Utilizes Static Site Generation (SSG) for informational pages like About/FAQ and Client-Side Rendering (CSR) for interactive features like the Cart.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠️ Technologies Used
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* **Framework**: Next.js 16.1.6
+* **Language**: TypeScript
+* **Styling**: Tailwind CSS
+* **API**: Platzi Fake Store API
+* **Fonts**: Plus Jakarta Sans
+* **Deployment**: Vercel
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 📸 Demo
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 🔗 Live Demo
+[Visit RevoFun on Vercel](https://milestone-3-valentinojuan79-q4o4.vercel.app/)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🚀 Installation & Setup
+
+1. **Clone the repository**:
+   ```bash
+   git clone [https://github.com/your-username/your-repo-name.git](https://github.com/your-username/your-repo-name.git)
+
+2. **Install dependencies**:
+    ```bash
+    npm install
+
+3. **Run development server**:
+    ```bash
+    npm run dev
+
+4. **Build for production**
+    ```bash
+    npm run build
