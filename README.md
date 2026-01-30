@@ -12,7 +12,7 @@ This project focuses on implementing **Next.js** integrated with the Platzi Fake
 ## ✨ Features Implemented
 
 * **Real Authentication**: Implemented a full login system using Platzi API tokens to fetch and display user profiles globally.
-* **Dynamic Product Catalog**: Fetches and displays products dynamically with category filtering and detailed price rendering.
+* **Dynamic Product Catalog**: Fetches and displays products dynamically.
 * **Shopping Cart**: A persistent shopping cart management system that saves user data across browser refreshes using Zustand.
 * **Interactive Checkout Flow**: A multi-step order process allowing users to input custom shipping details and select payment methods.
 * **Optimized Rendering Strategy**: Utilizes Static Site Generation (SSG) for informational pages like About/FAQ and Client-Side Rendering (CSR) for interactive features like the Cart.
