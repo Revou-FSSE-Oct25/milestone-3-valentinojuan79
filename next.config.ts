@@ -8,7 +8,7 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'i.imgur.com', // API ini sering pakai hosting Imgur untuk fotonya
+        hostname: 'i.imgur.com',
       },
     ],
   },
