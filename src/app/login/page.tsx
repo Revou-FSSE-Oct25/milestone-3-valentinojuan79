@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCartStore } from "@/lib/store";
 
-export default function LoginPage() {
+function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -15,7 +15,7 @@ export default function LoginPage() {
   const searchParams = useSearchParams();
   const setUser = useCartStore((state) => state.setUser);
 
-  const handleLogin = async (e: React.SubmitEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
     setIsLoading(true);
@@ -61,7 +61,7 @@ export default function LoginPage() {
       <div className="w-full max-w-md rounded-3xl border border-slate-800 bg-slate-900 p-10 shadow-2xl relative overflow-hidden">
         {isLoading && (
           <div className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-slate-900/90 backdrop-blur-sm">
-            <div className="h-12 w-12 animate-spin rounded-full border-4 border-revou-yellow border-t-transparent"></div>
+            <div className="h-12 w-12 animate-spin rounded-full border-4 border-yellow-500 border-t-transparent"></div>
             <p className="mt-4 font-black text-white animate-pulse uppercase tracking-widest text-xs">
               {statusMsg}
             </p>
@@ -86,7 +86,7 @@ export default function LoginPage() {
               onChange={(e) => setEmail(e.target.value)}
               disabled={isLoading}
               placeholder="john@mail.com"
-              className="w-full rounded-xl border border-slate-800 bg-slate-950 px-4 py-3 text-white outline-none focus:ring-2 focus:ring-revou-yellow transition disabled:opacity-50"
+              className="w-full rounded-xl border border-slate-800 bg-slate-950 px-4 py-3 text-white outline-none focus:ring-2 focus:ring-yellow-500 transition disabled:opacity-50"
               required
             />
           </div>
@@ -98,19 +98,31 @@ export default function LoginPage() {
               onChange={(e) => setPassword(e.target.value)}
               disabled={isLoading}
               placeholder="••••••••"
-              className="w-full rounded-xl border border-slate-800 bg-slate-950 px-4 py-3 text-white outline-none focus:ring-2 focus:ring-revou-yellow transition disabled:opacity-50"
+              className="w-full rounded-xl border border-slate-800 bg-slate-950 px-4 py-3 text-white outline-none focus:ring-2 focus:ring-yellow-500 transition disabled:opacity-50"
               required
             />
           </div>
           <button 
             type="submit" 
             disabled={isLoading}
-            className="w-full rounded-xl bg-revou-yellow py-4 text-sm font-black text-slate-900 hover:bg-yellow-400 transition active:scale-95 shadow-lg shadow-yellow-900/20 disabled:grayscale"
+            className="w-full rounded-xl bg-yellow-500 py-4 text-sm font-black text-slate-900 hover:bg-yellow-400 transition active:scale-95 shadow-lg shadow-yellow-900/20 disabled:grayscale"
           >
             {isLoading ? "PLEASE WAIT..." : "SIGN IN"}
           </button>
         </form>
       </div>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex min-h-[70vh] items-center justify-center">
+        <div className="h-12 w-12 animate-spin rounded-full border-4 border-yellow-500 border-t-transparent"></div>
+      </div>
+    }>
+      <LoginForm />
+    </Suspense>
   );
 }

@@ -1,14 +1,13 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const token = request.cookies.get("access_token")?.value;
   const role = request.cookies.get("user_role")?.value;
   const { pathname } = request.nextUrl;
-
-  const isProtectedRoute = pathname.startsWith("/checkout") || pathname.startsWith("/admin");
+  const isAuthRequired = pathname.startsWith("/checkout") || pathname.startsWith("/admin");
   
-  if (isProtectedRoute && !token) {
+  if (isAuthRequired && !token) {
     const loginUrl = new URL("/login", request.url);
     loginUrl.searchParams.set("callbackUrl", pathname);
     return NextResponse.redirect(loginUrl);

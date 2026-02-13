@@ -1,15 +1,15 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 const BASE_URL = "https://api.escuelajs.co/api/v1/products";
 
-// Handler untuk UPDATE (PUT)
 export async function PUT(
-  request: Request,
-  { params }: { params: { id: string } }
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const body = await request.json();
-    const res = await fetch(`${BASE_URL}/${params.id}`, {
+    const res = await fetch(`${BASE_URL}/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
@@ -29,13 +29,13 @@ export async function PUT(
   }
 }
 
-// Handler untuk DELETE
 export async function DELETE(
-  request: Request,
-  { params }: { params: { id: string } }
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const res = await fetch(`${BASE_URL}/${params.id}`, {
+    const { id } = await params;
+    const res = await fetch(`${BASE_URL}/${id}`, {
       method: "DELETE",
     });
 
