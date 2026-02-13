@@ -1,6 +1,6 @@
-# 🚀 RevoFun - E-Commerce Platform
+# 🚀 RevoShop - E-Commerce Platform
 
-RevoFun is a e-commerce application built as part of the **RevoU Software Engineering Bootcamp Milestone 3**. This project demonstrates a complete shopping journey, from authentication to a customized checkout experience.
+RevoShop is a e-commerce application built as part of the **RevoU Software Engineering Bootcamp Milestone 3**. This project demonstrates a complete shopping journey, from authentication to a customized checkout experience.
 
 ---
 
