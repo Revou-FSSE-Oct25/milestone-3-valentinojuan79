@@ -3,13 +3,19 @@ import { persist } from 'zustand/middleware';
 import { Product } from '@/types/product';
 
 interface User {
+  id: number;
   name: string;
   email: string;
   avatar: string;
+  role: string;
 }
 
+type CartItem = Product & {
+  quantity: number;
+};
+
 interface CartStore {
-  cart: any[];
+  cart: CartItem[];
   user: User | null;
   addToCart: (product: Product) => void;
   removeFromCart: (productId: number) => void;
@@ -22,21 +28,49 @@ export const useCartStore = create<CartStore>()(
   persist(
     (set, get) => ({
       cart: [],
-      user: null, 
-      addToCart: (product) => set((state) => {
-        const existingItem = state.cart.find((item) => item.id === product.id);
-        if (existingItem) {
-          return { cart: state.cart.map((item) => item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item ) };
-        }
-        return { cart: [...state.cart, { ...product, quantity: 1 }] };
-      }),
-      removeFromCart: (productId) => set((state) => ({ cart: state.cart.filter((item) => item.id !== productId) })),
+      user: null,
+
+      addToCart: (product) =>
+        set((state) => {
+          const existingItem = state.cart.find(
+            (item) => item.id === product.id
+          );
+
+          if (existingItem) {
+            return {
+              cart: state.cart.map((item) =>
+                item.id === product.id
+                  ? { ...item, quantity: item.quantity + 1 }
+                  : item
+              ),
+            };
+          }
+
+          return {
+            cart: [...state.cart, { ...product, quantity: 1 }],
+          };
+        }),
+
+      removeFromCart: (productId) =>
+        set((state) => ({
+          cart: state.cart.filter(
+            (item) => item.id !== productId
+          ),
+        })),
+
       clearCart: () => set({ cart: [] }),
+
       setUser: (user) => set({ user }),
-      totalItems: () => get().cart.reduce((acc, item) => acc + item.quantity, 0),
+
+      totalItems: () =>
+        get().cart.reduce(
+          (acc, item) => acc + item.quantity,
+          0
+        ),
     }),
-    { name: 'revofun-storage',
-        skipHydration: true,
-     }
+    {
+      name: 'revofun-storage',
+      skipHydration: true,
+    }
   )
 );

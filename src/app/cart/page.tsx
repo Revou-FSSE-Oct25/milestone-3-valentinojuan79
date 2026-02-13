@@ -9,7 +9,7 @@ export default function CartPage() {
 
   useEffect(() => setMounted(true), []);
 
-  const totalPrice = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  const totalPrice = cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2);
 
   if (!mounted) return null;
 
@@ -30,7 +30,11 @@ export default function CartPage() {
           <div className="lg:col-span-2 space-y-4">
             {cart.map((item) => (
               <div key={item.id} className="flex items-center gap-6 bg-slate-900 p-6 rounded-3xl border border-slate-800">
-                <img src={item.images[0].replace(/[\[\]\"]/g, "")} alt={item.title} className="w-24 h-24 object-cover rounded-2xl" />
+                <img 
+                  src={item.images?.[0]?.replace(/[\[\]\"]/g, "") || "/fallback-image.png"} 
+                  alt={item.title} 
+                  className="w-24 h-24 object-cover rounded-2xl" 
+                />
                 <div className="flex-1">
                   <h3 className="text-white font-bold text-lg">{item.title}</h3>
                   <p className="text-revou-yellow font-black">${item.price} x {item.quantity}</p>

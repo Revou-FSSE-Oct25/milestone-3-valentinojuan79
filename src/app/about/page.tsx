@@ -4,10 +4,10 @@ export default function AboutPage() {
     <div className="mx-auto max-w-4xl py-20">
       <div className="text-center">
         <h1 className="text-5xl font-black tracking-tight text-white sm:text-6xl">
-          About <span className="text-revou-yellow">Revo</span>Fun
+          About <span className="text-revou-yellow">Revo</span>Shop
         </h1>
         <p className="mt-8 text-xl leading-relaxed text-slate-400">
-          RevoFun is a modern e-commerce platform designed for the bold and the curious. 
+          RevoShop is a modern e-commerce platform designed for the bold and the curious. 
           Born as a Milestone 3 project at RevoU, we combine cutting-edge technology 
           with a passion for high-quality retail experiences.
         </p>

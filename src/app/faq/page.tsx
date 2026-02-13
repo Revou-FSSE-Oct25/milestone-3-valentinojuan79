@@ -23,7 +23,7 @@ export default function FAQPage() {
     <div className="max-w-3xl mx-auto py-20">
       <div className="text-center mb-16">
         <h1 className="text-4xl font-black text-white mb-4">Frequently Asked <span className="text-revou-yellow">Questions</span></h1>
-        <p className="text-slate-400">Everything you need to know about RevoFun.</p>
+        <p className="text-slate-400">Everything you need to know about RevoShop.</p>
       </div>
 
       <div className="space-y-6">
