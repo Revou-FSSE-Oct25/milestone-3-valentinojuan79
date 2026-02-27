@@ -17,9 +17,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="id" className={jakarta.variable}>
-      <body className="font-sans antialiased">
+      <body className="font-sans antialiased bg-white">
         <NavigationBar />
-        <main className="mx-auto max-w-7xl px-4 py-8 min-h-screen">
+        <main className="mx-auto max-w-7xl px-4 py-8 min-h-screen bg-white">
           {children}
         </main>
         <Footer />

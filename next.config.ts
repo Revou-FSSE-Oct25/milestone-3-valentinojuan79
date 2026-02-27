@@ -4,6 +4,10 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
+        hostname: 'www.dotandkey.com'
+      },
+      {
+        protocol: 'https',
         hostname: 'api.escuelajs.co',
       },
       {

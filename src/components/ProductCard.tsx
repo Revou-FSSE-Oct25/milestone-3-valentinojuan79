@@ -7,26 +7,26 @@ export default function ProductCard({ product }: { product: Product }) {
   return (
     <Link 
       href={`/product/${product?.id}`} 
-      className="group block overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 p-2 transition hover:border-revou-yellow"
+      className="group block overflow-hidden rounded-lg border border-gray-200 bg-white transition hover:shadow-md hover:border-gray-300"
     >
-      <div className="aspect-square overflow-hidden rounded-2xl bg-slate-800">
+      <div className="aspect-square overflow-hidden bg-gray-100">
         <img 
           src={cleanImage} 
           alt={product?.title || "Product Image"}
-          className="h-full w-full object-cover transition group-hover:scale-110"
+          className="h-full w-full object-cover transition group-hover:scale-105"
         />
       </div>
       
       <div className="p-4">
-        <p className="text-[9px] font-light uppercase tracking-widest text-amber-200">
+        <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
           {product?.category?.name || "Uncategorized"}
         </p>
         
-        <h3 className="mt-1 line-clamp-1 font-medium text-slate-200">
+        <h3 className="mt-2 line-clamp-2 font-medium text-gray-900">
           {product?.title || "Untitled Product"}
         </h3>
         
-        <p className="mt-2 text-xl font-black text-revou-yellow">
+        <p className="mt-3 text-lg font-semibold text-gray-900">
           ${product?.price || 0}
         </p>
       </div>

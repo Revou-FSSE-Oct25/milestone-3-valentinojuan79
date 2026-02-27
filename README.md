@@ -26,6 +26,7 @@ This project focuses on implementing **Next.js** integrated with the Platzi Fake
 * **Styling**: Tailwind CSS
 * **API**: Platzi Fake Store API
 * **Fonts**: Plus Jakarta Sans
+* **Images**: unDraw.co
 * **Deployment**: Vercel
 
 ---
@@ -33,7 +34,7 @@ This project focuses on implementing **Next.js** integrated with the Platzi Fake
 ## 📸 Demo
 
 ### 🔗 Live Demo
-[Visit RevoFun on Vercel](https://module5-valentinojuan.vercel.app/)
+[Visit RevoShop on Vercel](https://module5-valentinojuan.vercel.app/)
 
 ---
 

@@ -58,56 +58,69 @@ function LoginForm() {
 
   return (
     <div className="flex min-h-[70vh] items-center justify-center py-12 px-4">
-      <div className="w-full max-w-md rounded-3xl border border-slate-800 bg-slate-900 p-10 shadow-2xl relative overflow-hidden">
+      <div className="w-full max-w-md rounded-lg border border-gray-300 bg-white p-8 relative overflow-hidden">
         {isLoading && (
-          <div className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-slate-900/90 backdrop-blur-sm">
-            <div className="h-12 w-12 animate-spin rounded-full border-4 border-yellow-500 border-t-transparent"></div>
-            <p className="mt-4 font-black text-white animate-pulse uppercase tracking-widest text-xs">
+          <div className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-white/90 backdrop-blur-sm">
+            <div className="h-12 w-12 animate-spin rounded-full border-4 border-orange-600 border-t-transparent"></div>
+            <p className="mt-4 font-semibold text-gray-900 text-sm">
               {statusMsg}
             </p>
           </div>
         )}
 
         <div className="text-center">
-          <h2 className="text-3xl font-black text-white italic">Welcome Back</h2>
+          <h2 className="text-3xl font-bold text-gray-900">Welcome Back</h2>
           {error && (
-            <p className="mt-4 text-red-500 text-sm font-bold bg-red-500/10 p-2 rounded-lg border border-red-500/20">
+            <p className="mt-4 text-red-600 text-sm font-medium bg-red-50 p-2 rounded border border-red-200">
               {error}
             </p>
           )}
         </div>
 
-        <form className="mt-10 space-y-6" onSubmit={handleLogin}>
+        <form className="mt-8 space-y-5" onSubmit={handleLogin}>
           <div className="space-y-2">
-            <label className="text-sm font-semibold text-slate-400">Email Address</label>
+            <label className="text-sm font-medium text-gray-700">Email Address</label>
             <input 
               type="email" 
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               disabled={isLoading}
               placeholder="john@mail.com"
-              className="w-full rounded-xl border border-slate-800 bg-slate-950 px-4 py-3 text-white outline-none focus:ring-2 focus:ring-yellow-500 transition disabled:opacity-50"
+              className="w-full rounded border border-gray-300 bg-white px-3 py-2 text-gray-900 outline-none focus:ring-2 focus:ring-orange-600 focus:border-transparent transition disabled:opacity-50"
               required
             />
           </div>
           <div className="space-y-2">
-            <label className="text-sm font-semibold text-slate-400">Password</label>
+            <label className="text-sm font-medium text-gray-700">Password</label>
             <input 
               type="password" 
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               disabled={isLoading}
               placeholder="••••••••"
-              className="w-full rounded-xl border border-slate-800 bg-slate-950 px-4 py-3 text-white outline-none focus:ring-2 focus:ring-yellow-500 transition disabled:opacity-50"
+              className="w-full rounded border border-gray-300 bg-white px-3 py-2 text-gray-900 outline-none focus:ring-2 focus:ring-orange-600 focus:border-transparent transition disabled:opacity-50"
               required
             />
+          </div>
+          <div className="rounded border border-gray-200 bg-gray-50 p-3 space-y-2 text-xs text-gray-600">
+            <p className="font-semibold text-gray-900">Demo Accounts</p>
+            <div className="space-y-1 text-xs">
+              <div className="flex justify-between">
+                <span>👤 User:</span>
+                <span className="font-mono">john@mail.com / changeme</span>
+              </div>
+              <div className="flex justify-between">
+                <span>🛡️ Admin:</span>
+                <span className="font-mono">admin@mail.com / admin123</span>
+              </div>
+            </div>
           </div>
           <button 
             type="submit" 
             disabled={isLoading}
-            className="w-full rounded-xl bg-yellow-500 py-4 text-sm font-black text-slate-900 hover:bg-yellow-400 transition active:scale-95 shadow-lg shadow-yellow-900/20 disabled:grayscale"
+            className="w-full rounded py-3 text-sm font-semibold text-white bg-orange-600 hover:bg-orange-700 transition disabled:opacity-50"
           >
-            {isLoading ? "PLEASE WAIT..." : "SIGN IN"}
+            {isLoading ? "Please wait..." : "Sign In"}
           </button>
         </form>
       </div>

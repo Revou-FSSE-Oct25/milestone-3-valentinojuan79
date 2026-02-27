@@ -26,10 +26,10 @@ export default function NavigationBar() {
 
   if (!mounted) {
     return (
-      <nav className="sticky top-0 z-50 border-b border-slate-800 bg-slate-900 h-16">
+      <nav className="sticky top-0 z-50 border-b border-gray-200 bg-white h-16">
         <div className="mx-auto max-w-7xl h-full flex items-center px-4">
-          <span className="text-revou-yellow font-black text-2xl">
-            Revo<span className="text-white">Shop</span>
+          <span className="font-bold text-2xl text-gray-900">
+            Revo<span className="text-orange-600">Shop</span>
           </span>
         </div>
       </nav>
@@ -37,17 +37,16 @@ export default function NavigationBar() {
   }
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-slate-800 bg-slate-900/80 backdrop-blur-md">
+    <nav className="sticky top-0 z-50 border-b border-gray-200 bg-white">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
-        <Link href="/" className="text-2xl font-black">
-          <span className="text-revou-yellow">Revo</span>
-          <span className="text-white">Shop</span>
+        <Link href="/" className="text-2xl font-bold text-gray-900">
+          Revo<span className="text-orange-600">Shop</span>
         </Link>
 
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-8">
           <Link
             href="/products"
-            className="text-sm font-bold text-slate-300 hover:text-revou-yellow"
+            className="text-sm font-medium text-gray-700 hover:text-orange-600 transition"
           >
             Shop
           </Link>
@@ -55,45 +54,45 @@ export default function NavigationBar() {
           {user?.role === "admin" && (
             <Link
               href="/admin"
-              className="text-xs font-black text-revou-yellow border border-revou-yellow/30 px-3 py-1 rounded-lg hover:bg-revou-yellow hover:text-slate-900 transition italic"
+              className="text-xs font-semibold text-orange-600 border border-orange-600 px-3 py-1 rounded hover:bg-orange-600 hover:text-white transition"
             >
-              ADMIN PANEL
+              ADMIN
             </Link>
           )}
 
-          <Link href="/cart" className="relative p-2">
+          <Link href="/cart" className="relative p-2 text-xl hover:opacity-70 transition">
             🛒
             {totalItems() > 0 && (
-              <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-revou-yellow text-[10px] font-black text-slate-900 ring-2 ring-slate-900">
+              <span className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-orange-600 text-[10px] font-bold text-white">
                 {totalItems()}
               </span>
             )}
           </Link>
 
           {user ? (
-            <div className="flex items-center gap-4 border-l border-slate-800 pl-6">
+            <div className="flex items-center gap-4 border-l border-gray-200 pl-6">
               <div className="flex flex-col items-end">
-                <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">
+                <span className="text-xs text-gray-500 font-medium">
                   Welcome
                 </span>
-                <span className="text-sm font-black text-white italic">
+                <span className="text-sm font-semibold text-gray-900">
                   {user.name}
                 </span>
               </div>
 
               <button
                 onClick={handleLogout}
-                className="rounded-lg bg-red-500/10 px-4 py-2 text-xs font-black text-red-500 hover:bg-red-500 hover:text-white transition"
+                className="rounded px-3 py-2 text-xs font-medium text-white bg-red-600 hover:bg-red-700 transition"
               >
-                LOGOUT
+                Logout
               </button>
             </div>
           ) : (
             <Link
               href="/login"
-              className="rounded-xl bg-revou-yellow px-6 py-2 text-sm font-black text-slate-900 hover:bg-yellow-400 shadow-lg shadow-yellow-900/20"
+              className="rounded px-6 py-2 text-sm font-semibold text-white bg-orange-600 hover:bg-orange-700 transition"
             >
-              LOGIN
+              Login
             </Link>
           )}
         </div>

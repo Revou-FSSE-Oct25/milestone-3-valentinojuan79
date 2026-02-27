@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { requireAdmin } from "@/lib/auth";
 
 const BASE_URL = "https://api.escuelajs.co/api/v1/products";
 
@@ -6,6 +7,9 @@ export async function PUT(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const authError = await requireAdmin();
+  if (authError) return authError;
+
   try {
     const { id } = await params;
     const body = await request.json();
@@ -16,11 +20,11 @@ export async function PUT(
     });
 
     if (!res.ok) {
-      return NextResponse.json(
-        { message: "Gagal mengupdate produk" },
-        { status: res.status }
-      );
-    }
+  return NextResponse.json(
+    { message: "Gagal mengupdate produk"},
+    { status: res.status }
+  );
+}
 
     const data = await res.json();
     return NextResponse.json(data);
@@ -30,9 +34,12 @@ export async function PUT(
 }
 
 export async function DELETE(
-  request: NextRequest,
+  _request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const authError = await requireAdmin();
+  if (authError) return authError;
+
   try {
     const { id } = await params;
     const res = await fetch(`${BASE_URL}/${id}`, {

@@ -1,8 +1,12 @@
 import { NextResponse } from "next/server";
+import { requireAdmin } from "@/lib/auth";
 
 const BASE_URL = "https://api.escuelajs.co/api/v1/products";
 
 export async function POST(request: Request) {
+  const authError = await requireAdmin();
+  if (authError) return authError;
+
   try {
     const body = await request.json();
 
@@ -13,11 +17,11 @@ export async function POST(request: Request) {
     });
 
     if (!res.ok) {
-      return NextResponse.json(
-        { message: "Gagal membuat produk di API" },
-        { status: res.status }
-      );
-    }
+  return NextResponse.json(
+    { message: "Gagal membuat produk di API"},
+    { status: res.status }
+  );
+}
 
     const data = await res.json();
     return NextResponse.json(data);

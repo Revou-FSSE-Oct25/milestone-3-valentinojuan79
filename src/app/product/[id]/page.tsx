@@ -35,43 +35,43 @@ export default function ProductDetailPage() {
     }
   };
 
-  if (loading) return <div className="py-20 text-center text-revou-yellow font-bold animate-pulse">Loading Product Details...</div>;
-  if (!product) return <div className="py-20 text-center text-white">Product not found.</div>;
+  if (loading) return <div className="py-20 text-center text-orange-600 font-semibold">Loading product...</div>;
+  if (!product) return <div className="py-20 text-center text-gray-900">Product not found.</div>;
 
-  const cleanImage = product.images[0]?.replace(/[\[\]\"]/g, "");
+  const cleanImage = product.images?.[0]?.replace(/[\[\]\"]/g, "") || "https://placehold.co/600x400";
 
   return (
-    <div className="py-10">
-      <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 items-center">
+    <div className="py-12">
+      <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 items-start">
         {/* Product Image Section */}
-        <div className="overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 p-4">
+        <div className="overflow-hidden rounded-lg border border-gray-200 bg-gray-50 p-4">
           <img 
             src={cleanImage} 
             alt={product.title} 
-            className="w-full rounded-2xl object-cover shadow-2xl transition hover:scale-105 duration-500" 
+            className="w-full rounded object-cover hover:opacity-95 transition duration-300" 
           />
         </div>
 
         {/* Product Info Section */}
         <div className="flex flex-col">
-          <span className="inline-block w-fit rounded-full bg-blue-600/10 px-4 py-1 text-xs font-bold uppercase tracking-widest text-revou-yellow">
-            {product.category.name}
+          <span className="inline-block w-fit rounded px-3 py-1 text-xs font-semibold uppercase text-orange-600 bg-orange-50">
+            {product.category?.name ?? "Uncategorized"}
           </span>
           
-          <h1 className="mt-4 text-4xl font-black text-white leading-tight md:text-5xl">
+          <h1 className="mt-4 text-3xl font-bold text-gray-900 leading-tight md:text-4xl">
             {product.title}
           </h1>
           
           <div className="mt-6 flex items-center gap-4">
-            <p className="text-4xl font-black text-revou-yellow">${product.price}</p>
-            <span className="rounded-lg bg-slate-800 px-3 py-1 text-sm font-medium text-slate-400">
+            <p className="text-3xl font-bold text-orange-600">${product.price}</p>
+            <span className="rounded px-3 py-1 text-sm font-medium text-green-600 bg-green-50">
               In Stock
             </span>
           </div>
 
-          <div className="mt-8 border-t border-slate-800 pt-8">
-            <h3 className="text-lg font-bold text-white">Description</h3>
-            <p className="mt-4 text-lg leading-relaxed text-slate-400">
+          <div className="mt-8 border-t border-gray-200 pt-8">
+            <h3 className="font-semibold text-gray-900">Description</h3>
+            <p className="mt-4 leading-relaxed text-gray-600">
               {product.description}
             </p>
           </div>
@@ -80,26 +80,26 @@ export default function ProductDetailPage() {
           <button 
             onClick={handleAddToCart}
             disabled={isAdded}
-            className={`mt-10 flex w-full items-center justify-center gap-3 rounded-2xl py-5 text-lg font-black transition-all active:scale-95 shadow-xl ${
+            className={`mt-10 flex w-full items-center justify-center gap-2 rounded py-4 font-semibold transition ${
               isAdded 
-                ? "bg-green-500 text-white cursor-default" 
-                : "bg-revou-yellow text-slate-900 hover:bg-yellow-400 shadow-yellow-900/10"
+                ? "bg-green-600 text-white" 
+                : "bg-orange-600 text-white hover:bg-orange-700"
             }`}
           >
             {isAdded ? (
               <>
-                <span>Added to Cart!</span>
-                <span className="text-2xl">✓</span>
+                <span>Added to Cart</span>
+                <span>✓</span>
               </>
             ) : (
               <>
                 <span>Add to Cart</span>
-                <span className="text-2xl">🛒</span>
+                <span>🛒</span>
               </>
             )}
           </button>
 
-          <p className="mt-6 text-center text-sm text-slate-500">
+          <p className="mt-6 text-center text-sm text-gray-500">
             Free shipping worldwide.
           </p>
         </div>

@@ -20,17 +20,17 @@ export default function FAQPage() {
   ];
 
   return (
-    <div className="max-w-3xl mx-auto py-20">
-      <div className="text-center mb-16">
-        <h1 className="text-4xl font-black text-white mb-4">Frequently Asked <span className="text-revou-yellow">Questions</span></h1>
-        <p className="text-slate-400">Everything you need to know about RevoShop.</p>
+    <div className="max-w-3xl mx-auto py-16">
+      <div className="text-center mb-12">
+        <h1 className="text-4xl font-bold text-gray-900 mb-2">Frequently Asked <span className="text-orange-600">Questions</span></h1>
+        <p className="text-gray-600">Find answers to common questions</p>
       </div>
 
-      <div className="space-y-6">
+      <div className="space-y-4">
         {faqs.map((faq, index) => (
-          <div key={index} className="bg-slate-900 p-6 rounded-2xl border border-slate-800">
-            <h3 className="text-lg font-bold text-revou-yellow mb-2 tracking-tight">{faq.q}</h3>
-            <p className="text-slate-400 leading-relaxed">{faq.a}</p>
+          <div key={index} className="bg-white p-6 rounded-lg border border-gray-200">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">{faq.q}</h3>
+            <p className="text-gray-600">{faq.a}</p>
           </div>
         ))}
       </div>
