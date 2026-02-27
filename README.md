@@ -34,7 +34,7 @@ This project focuses on implementing **Next.js** integrated with the Platzi Fake
 ## 📸 Demo
 
 ### 🔗 Live Demo
-[Visit RevoShop on Vercel](https://module5-valentinojuan.vercel.app/)
+[Visit RevoShop on Vercel](https://milestone-3-valentinojuan.vercel.app/)
 
 ---
 
